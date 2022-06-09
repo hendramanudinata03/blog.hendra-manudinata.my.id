@@ -8,7 +8,17 @@
     {% include header.html %}
 
     <div class="page-content">
-        {{ content }}
+      {% if page.layout != "post" %}
+      <div class="site-header-container {% if page.cover %}has-cover{% endif %}" {% if page.cover %}style="background-image: url({{ page.cover | prepend: site.baseurl }});"{% endif %}>
+        <div class="scrim {% if page.cover %}has-cover{% endif %}">
+          <header class="site-header">
+            <h1 class="title">{{ page.title }}</h1>
+            {% if page.subtitle %}<p class="subtitle">{{ page.subtitle }}</p>{% endif %}
+          </header>
+        </div>
+      </div>
+      {% endif %}
+      {{ content }}
     </div>
 
     {% include footer.html %}
